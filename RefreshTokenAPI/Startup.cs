@@ -8,12 +8,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RefreshTokenAPI.Business;
 using RefreshTokenAPI.Business.Interface;
+using RefreshTokenAPI.Models.Context;
 using RefreshTokenAPI.Models.Security;
 using RefreshTokenAPI.Repository;
 using RefreshTokenAPI.Repository.Interface;
@@ -32,6 +34,10 @@ namespace RefreshTokenAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Prepara Banco de dados
+            var connectionString = Configuration["ConnectionStrings:ExemploJWT"];
+            services.AddDbContext<SQLContext>(options => options.UseSqlServer(connectionString));
+
             services.AddDistributedSqlServerCache(options =>
             {
                 options.ConnectionString = Configuration

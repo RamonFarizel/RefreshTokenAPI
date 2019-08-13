@@ -19,7 +19,7 @@ namespace RefreshTokenAPI.Repository
 
         public User FindUser(string user)
         {
-            return _context.Users.SingleOrDefault(x => x.UserID.Equals(user));
+            return _context.LoginUsuario.SingleOrDefault(x => x.UserID.Equals(user));
         }
     }
 }

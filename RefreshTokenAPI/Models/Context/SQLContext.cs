@@ -18,6 +18,6 @@ namespace RefreshTokenAPI.Models.Context
 
         }
         //Mesmo nome da tabela do banco de DADOS!!!!!
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> LoginUsuario { get; set; }
     }
 }
